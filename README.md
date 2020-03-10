@@ -14,12 +14,12 @@ No installation needed. To start program run main.py script.
 
 ## Controls
 
-Left CLick -> Select Square
-1-9 -> Insert Number
-0 -> Remove Selected Square's Number
-Backspace -> Remove All Numbers
-S -> Auto-solve
-Enter -> Check Solve
+Left CLick -> Select Square 
+1-9 -> Insert Number 
+0 -> Remove Selected Square's Number 
+Backspace -> Remove All Numbers 
+S -> Auto-solve 
+Enter -> Check Solve 
 
 ## Screenshots
 
