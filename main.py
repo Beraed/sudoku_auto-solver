@@ -1,4 +1,5 @@
 import pygame
+import time
 
 
 class Display():
@@ -6,7 +7,7 @@ class Display():
     def __init__(self):
         pygame.init()
 
-        # pygame.display.set_caption("Sudoku")
+        pygame.display.set_caption("Sudoku")
         # self.icon = pygame.image.load(".png")
         # pygame.display.set_icon(self.icon)
 
@@ -109,6 +110,8 @@ class Board():
 
     def draw(self):
 
+        font = pygame.font.SysFont("arial", self.gap)
+
         # Draw Selected
         for i in range(9):
             for j in range(9):
@@ -128,8 +131,6 @@ class Board():
 
         # Draw Numbers
 
-        font = pygame.font.SysFont("arial", self.gap)
-
         for i in range(9):
             for j in range(9):
                 if board.grid[i][j] != 0:
@@ -144,6 +145,22 @@ class Board():
         # Draw Border
         pygame.draw.rect(display.screen, (240, 240, 240),
                          pygame.Rect(0, display.width+1, display.width, display.height - display.width))
+
+        # Draw Time
+        font = pygame.font.SysFont("arial", 60)
+        text = "Time "+str(play_time//60)+":"
+        if play_time%60 < 10:
+            text = text+"0"
+        text = text +str(play_time%60)
+        text = font.render(text, True, (0,0,0))
+        display.screen.blit(text, (485, 725))
+
+        # Win
+        if game_state == "win":
+            font = pygame.font.SysFont("arial", 60)
+            text = font.render("You Won", True, (0, 0, 0))
+            display.screen.blit(text, (15, 725))
+
 
     def key_press(self):
         global game_state, event, board
@@ -224,8 +241,11 @@ board = Board()
 
 running = True
 game_state = "play"
+start_time = time.time()
 
 while running:
+
+    play_time = round(time.time() - start_time)
 
     if game_state == "main_menu":
         pass
