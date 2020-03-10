@@ -203,6 +203,24 @@ class Board():
                     elif event.key == pygame.K_0:
                         self.grid[self.selected_row][self.selected_col] = 0
 
+            if event.key in (pygame.K_UP,pygame.K_DOWN,pygame.K_LEFT,pygame.K_RIGHT):
+                if self.selected_row == -1 and self.selected_col == -1:
+                    self.selected_row = 0
+                    self.selected_col = 0
+
+                elif event.key == pygame.K_UP and self.selected_row > 0:
+                    self.selected_row -= 1
+
+                elif event.key == pygame.K_DOWN and self.selected_row < 8:
+                    self.selected_row += 1
+
+                elif event.key == pygame.K_LEFT and self.selected_col > 0:
+                    self.selected_col -= 1
+
+                elif event.key == pygame.K_RIGHT and self.selected_col < 8:
+                    self.selected_col += 1
+
+
             if event.key == pygame.K_BACKSPACE:
                 for i in range(9):
                     for j in range(9):
@@ -216,11 +234,11 @@ class Board():
                             self.grid[i][j] = 0
                 self.solve()
 
-            if self.solve_check():
-                game_state = "win"
-                self.selected_col = -1
-                self.selected_row = -1
-                print("win")
+            if event.key == pygame.K_RETURN:
+                if self.solve_check():
+                    game_state = "win"
+                    self.selected_col = -1
+                    self.selected_row = -1
 
     def solve_check(self):
         if not self.find_empty():
