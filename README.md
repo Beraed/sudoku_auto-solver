@@ -1,5 +1,5 @@
 # sudoku_auto-solver
-Recreation of the Sudoku game with an integrated auto-solver using Python and Pygame.
+Recreation of the Sudoku game with an integrated auto-solver.
 
 ## Prerequisites
 
